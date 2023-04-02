@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+  <h1>🌟 Super Hero Battle App</h1>
+  <h2>Choose your superheroes and let the battle begin! </h2>
+  
+  <div id='superherodataWrapper'>
+    <div id='superhero1data'>
+      <input id='searchInput1' type="text">
+      <button id='searchButton1'>Search Hero 1</button>
+      <button id='newHeroButton1'>Random Hero 1</button>
+    </div>
+    <h1> VS </h1>
+    <div id='superhero2data'>
+      <input id='searchInput2' type="text">
+      <button id='searchButton2'>Search Hero 2</button>
+      <button id='newHeroButton2'>Random Hero 2</button>
+    </div>  
+  </div>
+  
+  </br>
+
+<!--   choose your fight  -->
+  <div>
+  <h2 for="fight-type">Choose a fight type:</h2>
+  <select id="fight-type">
+    <option value="intelligence">Intelligence</option>
+    <option value="strength">Strength</option>
+    <option value="speed">Speed</option>
+    <option value="durability">Durability</option>
+    <option value="power">Power</option>
+    <option value="combat">Combat</option>
+  </select>
+</div>
+
+  <button id="fightButton">Fight!</button>
+
+  <div id="fightResult"></div>
+
+  
+  <div class="superhero-card-container">
+  <div class="superhero-card">
+    <div id="heroImageWrapper">
+      <div id="heroImage1"><img src="" alt=""></div>
+    </div>
+  </div>
+
+  <div class="superhero-card">
+    <div id="heroImageWrapper">
+      <div id="heroImage2"><img src="" alt=""></div>
+    </div>
+  </div>
+</div>
+
+  
+  <script src="script.js"></script>
+</body>
+
+</html>
