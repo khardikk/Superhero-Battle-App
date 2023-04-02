@@ -1,6 +1,6 @@
 # Superhero Battle App
 
-This is a web application where users can compare two superheroes and see who would win in a battle based on their stats.
+This is a [web application](https://superherobattleapp.netlify.app/) where users can compare two superheroes and see who would win in a battle based on their stats.
 
 ![image](https://user-images.githubusercontent.com/64458111/229352888-47991eae-d096-4f7f-9c57-ff62fcb59ead.png)
 
