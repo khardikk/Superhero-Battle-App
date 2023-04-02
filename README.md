@@ -2,6 +2,9 @@
 
 This is a web application where users can compare two superheroes and see who would win in a battle based on their stats.
 
+![image](https://user-images.githubusercontent.com/64458111/229352888-47991eae-d096-4f7f-9c57-ff62fcb59ead.png)
+
+
 ## Technologies Used
 
 - HTML
