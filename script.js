@@ -1,5 +1,8 @@
 // https://superheroapi.com/api/access-token/character-id
 
+let superHero_1 = {};
+let superHero_2 = {};
+
 const SUPERHERO_TOKEN = '10223569763528853'
 const BASE_URL = `https://superheroapi.com/api.php/${SUPERHERO_TOKEN}`
 // new hero buttons for random input 
@@ -21,25 +24,71 @@ const searchInput2 = document.getElementById('searchInput2')
 const fightButton = document.getElementById('fightButton');
 fightButton.style.display = 'none';
 
-// getting the value of our fight type when button is clicked 
+//winner-div
+const winnerelement = document.querySelector(".winner");
+const heroImage1 = document.getElementById("heroImage1");
+const heroImage2 = document.getElementById("heroImage2");
+
+
+
+
 newHeroButton1.addEventListener('click', () => {
   showFightButton();
+  resetdefault();
 });
 
 newHeroButton2.addEventListener('click', () => {
   showFightButton();
+  resetdefault();
 });
 
 searchButton1.addEventListener('click', () => {
   showFightButton();
+  resetdefault();
 });
 
 searchButton2.addEventListener('click', () => {
   showFightButton();
+  resetdefault();
 });
 
+fightButton.addEventListener('click', () => {
+  const fightType = document.getElementById("fight-type");
+  fightbegins(fightType);
 
-const getSuperHero1 = (id, name) => {
+
+})
+
+const fightbegins = (fightType) => {
+  const selectedValue = fightType.value;
+  const statshero1 = parseInt(superHero_1.powerstats[selectedValue]);
+  const statshero2 = parseInt(superHero_2.powerstats[selectedValue]);
+  const nameHero1 = superHero_1.name;
+  const nameHero2 = superHero_2.name;
+
+  if (isNaN(statshero1) || isNaN(statshero2)) {
+    alert("Select the NULL super hero again");
+  } else {
+    const winner = (statshero1 > statshero2) ? nameHero1 : (statshero1 < statshero2) ? nameHero2 : "Tie";
+    const loserImage = (statshero1 > statshero2) ? heroImage2 : heroImage1;
+    const winnerImage = (statshero1 > statshero2) ? heroImage1 : heroImage2;
+
+    winnerelement.textContent = `${winner} Wins`;
+    winnerelement.style.display = "block";
+    loserImage.classList.add("transparency");
+    winnerImage.classList.remove("transparency");
+  }
+};
+
+const resetdefault = () => {
+  winnerelement.style.display = "none";
+  heroImage2.classList.remove("transparency");
+  heroImage1.classList.remove("transparency");
+};
+
+
+
+const getSuperHero1 = (id) => {
   // name 👉 base_url/search/batman
   // json.results[0].image.url
   // id: 👉 base_url/id
@@ -49,11 +98,12 @@ const getSuperHero1 = (id, name) => {
     .then(json => {
       console.log(json.powerstats)
       const superHero = json
-      showHeroInfo1(superHero) 
+      showHeroInfo1(superHero)
+      superHero_1 = superHero;
     })
 }
 
-const getSuperHero2 = (id, name) => {
+const getSuperHero2 = (id) => {
   // name 👉 base_url/search/batman
   // json.results[0].image.url
   // id: 👉 base_url/id
@@ -63,7 +113,8 @@ const getSuperHero2 = (id, name) => {
     .then(json => {
       console.log(json.powerstats)
       const superHero = json
-      showHeroInfo2(superHero) 
+      showHeroInfo2(superHero)
+      superHero_2 = superHero;
     })
 }
 
@@ -110,7 +161,9 @@ const getSearchSuperHero1 = (name) => {
     .then(response => response.json())
     .then(json => {
       const hero = json.results[0]
-      showHeroInfo1(hero) 
+      showHeroInfo1(hero)
+      superHero_1 = hero;
+
     })
 }
 
@@ -120,12 +173,13 @@ const getSearchSuperHero2 = (name) => {
     .then(response => response.json())
     .then(json => {
       const hero = json.results[0]
-      showHeroInfo2(hero) 
+      showHeroInfo2(hero)
+      superHero_2 = hero;
     })
 }
 
 function showFightButton() {
- fightButton.style.display = 'block';
+  fightButton.style.display = 'block';
   fightButton.style.marginTop = '10px';
   fightButton.style.marginLeft = 'auto';
   fightButton.style.marginRight = 'auto';
@@ -138,7 +192,8 @@ const randomHero = () => {
 }
 
 newHeroButton1.onclick = () => getSuperHero1(randomHero()) 
-newHeroButton2.onclick = () => getSuperHero2(randomHero()) 
+newHeroButton2.onclick = () => getSuperHero2(randomHero())
 
 searchButton1.onclick = () => getSearchSuperHero1(searchInput1.value)
 searchButton2.onclick = () => getSearchSuperHero2(searchInput2.value)
+
